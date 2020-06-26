@@ -1,0 +1,32 @@
+<section class="repositories">
+  <h1 class="title">Find GitHub repositories for a user</h1>
+
+  <input class="input" type="text" [formControl]="username" />
+
+  <label
+    class="input__error"
+    *ngIf="username.invalid && (username.dirty || username.touched)"
+  >
+    This field is required.
+  </label>
+
+  <div *ngIf="results$ | async as results">
+    <div *ngIf="username.valid">
+      <label class="input__error" *ngIf="results.error">
+        {{ results.error }}
+      </label>
+
+      <div class="repositories__results">
+        <div *ngIf="results.loading" class="loader"></div>
+        <div *ngIf="!results.loading && !results.error">
+          <div *ngIf="results.value?.length === 0">
+            Found 0 repositories
+          </div>
+          <div *ngFor="let repository of results.value">
+            <app-repository [repository]="repository"></app-repository>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

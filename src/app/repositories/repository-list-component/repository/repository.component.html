@@ -1,0 +1,24 @@
+<div class="repository">
+  <h2 class="repository__name">
+    <img
+      class="repository__icon"
+      src="assets/icons/repository.png"
+      alt="Repository icon"
+    />
+    {{ repository.ownerLogin + "/" + repository.name }}
+  </h2>
+
+  <div class="repository__branch" *ngFor="let branch of repository.branches">
+    <img
+      class="repository__branch__icon"
+      src="assets/icons/branch.png"
+      alt="Branch icon"
+    />
+    <div class="repository__branch__name">
+      {{ branch.name }}
+    </div>
+    <div class="repository__branch__commit">
+      {{ branch.sha }}
+    </div>
+  </div>
+</div>
